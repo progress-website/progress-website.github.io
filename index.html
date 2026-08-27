@@ -212,10 +212,10 @@
   }
   .hero h1 {
     font-weight: 900;
-    font-size: clamp(2.3rem, 1.3rem + 4.6vw, 4.3rem);
-    letter-spacing: .01em;
+    font-size: clamp(1.4rem, 7vw, 4.1rem);
+    letter-spacing: .005em;
     color: #fff;
-    max-width: 16ch;
+    white-space: nowrap;
   }
   .hero .lede {
     margin: 1.5rem 0 0;
@@ -467,7 +467,11 @@
     background: var(--navy-deep);
     color: var(--on-navy);
   }
-  .contact .section-head h2 { color: #fff; }
+  .contact .section-head h2 {
+    color: #fff;
+    white-space: nowrap;
+    font-size: clamp(1.5rem, 1.05rem + 2vw, 2.6rem);
+  }
   .contact .section-head p { color: var(--on-navy-soft); }
   .info-grid {
     display: grid;
@@ -527,7 +531,7 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <p class="kicker">国際・留学生向け</p>
-      <h1>留学生向け<br>賃貸仲介サービス</h1>
+      <h1>留学生向け賃貸仲介サービス</h1>
       <p class="lede">部屋探しから入居・退去まで、ワンストップでサポート。契約の責任は弊社が担い、留学生が安心して暮らせる住環境を整えます。</p>
       <div class="hero-cta">
         <a href="#contact" class="btn">提携・お問い合わせ</a>
