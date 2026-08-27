@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>合同会社Progress</title>
+<meta name="description" content="合同会社Progress｜留学生向け賃貸仲介サービス。部屋探しから入居・退去まで、就職サポート・生活手続きまでワンストップで対応します。">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
+
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #eef4f8;
+    --ink: #101d34;
+    --ink-soft: #566179;
+    --line: #e3eaf1;
+    --navy: #17294c;
+    --navy-deep: #0d1a34;
+    --accent: #2b7a9e;
+    --accent-ink: #1f5f7d;
+    --accent-soft: #dcebf2;
+    --on-navy: #ecf2f9;
+    --on-navy-soft: #a7bdd6;
+    --shadow: 0 1px 2px rgba(16,29,52,.04), 0 12px 32px -12px rgba(16,29,52,.14);
+    --radius: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1220;
+      --surface: #121f34;
+      --surface-2: #182842;
+      --ink: #e9eff7;
+      --ink-soft: #9fb1c7;
+      --line: #26374f;
+      --navy: #16274a;
+      --navy-deep: #0a1428;
+      --accent: #56aacd;
+      --accent-ink: #8fcbe4;
+      --accent-soft: #1d3346;
+      --on-navy: #ecf2f9;
+      --on-navy-soft: #a7bdd6;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -16px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220;
+    --surface: #121f34;
+    --surface-2: #182842;
+    --ink: #e9eff7;
+    --ink-soft: #9fb1c7;
+    --line: #26374f;
+    --navy: #16274a;
+    --navy-deep: #0a1428;
+    --accent: #56aacd;
+    --accent-ink: #8fcbe4;
+    --accent-soft: #1d3346;
+    --on-navy: #ecf2f9;
+    --on-navy-soft: #a7bdd6;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -16px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, system-ui, sans-serif;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Zen Kaku Gothic New", "Noto Sans JP", system-ui, sans-serif;
+    line-height: 1.32;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { color: inherit; }
+  img { max-width: 100%; }
+
+  .wrap {
+    width: min(1120px, 100% - 2.5rem);
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: var(--accent-ink);
+    font-size: .98rem;
+    margin: 0 0 .9rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    display: inline-block;
+    opacity: .6;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: .75rem;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+  }
+  .brand .co { font-size: .82rem; color: var(--ink-soft); font-weight: 500; }
+  .brand .name { font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.32rem; letter-spacing: .01em; }
+  .nav-links {
+    display: flex;
+    gap: 1.6rem;
+    font-size: .92rem;
+    font-weight: 500;
+  }
+  .nav-links a { text-decoration: none; color: var(--ink-soft); transition: color .2s; }
+  .nav-links a:hover { color: var(--accent-ink); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: .62rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 70%, #000 12%);
+    transition: transform .18s ease, box-shadow .18s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--accent) 60%, transparent); }
+  .btn:focus-visible, a:focus-visible, .nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background: var(--navy-deep);
+    color: var(--on-navy);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero::before, .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .hero::before {
+    width: 46vw; height: 46vw;
+    max-width: 620px; max-height: 620px;
+    right: -8vw; top: -14vw;
+    background: radial-gradient(circle at 30% 30%, #23407090, #17294c00 70%);
+  }
+  .hero::after {
+    width: 24vw; height: 24vw;
+    max-width: 300px; max-height: 300px;
+    left: -8vw; bottom: -10vw;
+    background: radial-gradient(circle at 60% 40%, #2b7a9e55, #2b7a9e00 70%);
+  }
+  .hero-inner {
+    padding-block: clamp(3.5rem, 9vw, 6.5rem) clamp(2.5rem, 6vw, 4rem);
+  }
+  .hero .kicker {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    letter-spacing: .16em;
+    font-size: .82rem;
+    color: var(--on-navy-soft);
+    margin: 0 0 1.4rem;
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: clamp(2.3rem, 1.3rem + 4.6vw, 4.3rem);
+    letter-spacing: .01em;
+    color: #fff;
+    max-width: 16ch;
+  }
+  .hero .lede {
+    margin: 1.5rem 0 0;
+    font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.22rem);
+    color: var(--on-navy-soft);
+    max-width: 42ch;
+    line-height: 1.9;
+  }
+  .hero-cta {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+  }
+  .btn.ghost {
+    background: transparent;
+    border-color: color-mix(in srgb, var(--on-navy-soft) 45%, transparent);
+    color: var(--on-navy);
+  }
+  .btn.ghost:hover { background: #ffffff12; box-shadow: none; }
+
+  /* company card */
+  .company-card {
+    margin-top: clamp(2.8rem, 6vw, 4rem);
+    background: #ffffff0a;
+    border: 1px solid #ffffff22;
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+    display: grid;
+    gap: 1.4rem;
+    max-width: 720px;
+  }
+  .company-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .company-head .mark {
+    flex: none;
+    width: 52px; height: 52px;
+    display: grid; place-items: center;
+    background: var(--accent);
+    border-radius: 14px;
+    color: #fff;
+  }
+  .company-head .mark svg { width: 26px; height: 26px; }
+  .company-head h2 {
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  .company-head h2 .en { font-family: "Lora", serif; font-weight: 600; }
+  .company-head p { margin: .15rem 0 0; font-size: .84rem; color: var(--on-navy-soft); }
+  .company-facts {
+    display: grid;
+    gap: .1rem;
+    border-top: 1px solid #ffffff1f;
+    padding-top: 1.3rem;
+  }
+  .company-facts div {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    padding: .45rem 0;
+    font-size: .92rem;
+    line-height: 1.7;
+  }
+  .company-facts dt {
+    color: var(--on-navy-soft);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .04em;
+  }
+  .company-facts dd { margin: 0; color: var(--on-navy); }
+  @media (max-width: 540px) {
+    .company-facts div { grid-template-columns: 1fr; gap: .1rem; }
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section-head { max-width: 46ch; margin-bottom: clamp(2rem, 5vw, 3rem); }
+  .section-head h2 {
+    font-weight: 700;
+    font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem);
+    color: var(--ink);
+  }
+  .section-head p { margin: .8rem 0 0; color: var(--ink-soft); }
+
+  .grid { display: grid; gap: 1.1rem; }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) { .grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) {
+    .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.7rem 1.6rem;
+    box-shadow: var(--shadow);
+  }
+  .card .icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    display: grid; place-items: center;
+    margin-bottom: 1.1rem;
+  }
+  .card .icon svg { width: 24px; height: 24px; }
+  .card h3 {
+    font-size: 1.14rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .card p {
+    margin: .55rem 0 0;
+    font-size: .93rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+
+  /* jobs section */
+  .visa-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    box-shadow: var(--shadow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .visa-card .icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    display: grid; place-items: center;
+    margin-bottom: 1.3rem;
+  }
+  .visa-card .icon svg { width: 28px; height: 28px; }
+  .visa-card h3 {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .visa-card .label {
+    margin: 1.5rem 0 .8rem;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--accent-ink);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    justify-content: center;
+  }
+  .chip {
+    background: var(--surface-2);
+    color: var(--accent-ink);
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    font-size: .88rem;
+    font-weight: 700;
+    padding: .4rem 1.05rem;
+    border-radius: 999px;
+  }
+
+  /* features + pricing */
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    border-radius: var(--radius);
+    padding: clamp(1.3rem, 3vw, 1.9rem) clamp(1.4rem, 3.5vw, 2.4rem);
+    margin-top: 1.1rem;
+  }
+  .bar .badge {
+    flex: none;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "Lora", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .bar .badge svg { width: 24px; height: 24px; }
+  .bar .k {
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    opacity: .85;
+    display: block;
+    margin-bottom: .25rem;
+  }
+  .bar .v {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 1rem + 1vw, 1.55rem);
+    line-height: 1.4;
+  }
+  .bar.navy { background: var(--navy); color: var(--on-navy); }
+  .bar.navy .badge { background: var(--accent); color: #fff; }
+  .bar.teal { background: var(--accent); color: #fff; }
+  .bar.teal .badge { background: #ffffff26; color: #fff; }
+  @media (max-width: 520px) {
+    .bar { flex-direction: column; align-items: flex-start; gap: .9rem; }
+  }
+
+  /* nationalities */
+  .nat-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(2rem, 5vw, 3.4rem);
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .nat-panel .icon {
+    width: 66px; height: 66px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    display: inline-grid; place-items: center;
+    margin-bottom: 1rem;
+  }
+  .nat-panel .icon svg { width: 30px; height: 30px; }
+  .nat-panel .label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    color: var(--accent-ink);
+    margin-bottom: 1.4rem;
+  }
+  .nat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    justify-content: center;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+  .nat-chips .chip { background: var(--accent-soft); border-color: transparent; padding: .55rem 1.3rem; }
+
+  /* contact / company */
+  .contact {
+    background: var(--navy-deep);
+    color: var(--on-navy);
+  }
+  .contact .section-head h2 { color: #fff; }
+  .contact .section-head p { color: var(--on-navy-soft); }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.1rem;
+  }
+  @media (max-width: 760px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-card {
+    background: #ffffff0a;
+    border: 1px solid #ffffff1f;
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 3.5vw, 2.2rem);
+  }
+  .info-card h3 { font-size: 1.05rem; color: #fff; margin-bottom: 1rem; }
+  .info-card dl { margin: 0; display: grid; gap: .9rem; }
+  .info-card dl > div { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; font-size: .92rem; }
+  .info-card dt { color: var(--on-navy-soft); font-weight: 700; font-size: .82rem; letter-spacing: .03em; }
+  .info-card dd { margin: 0; }
+  @media (max-width: 440px) { .info-card dl > div { grid-template-columns: 1fr; gap: .15rem; } }
+  .info-card .lede { margin: 0 0 1.4rem; color: var(--on-navy-soft); font-size: .95rem; }
+  .info-card .btn { margin-top: .4rem; }
+  .map-note { font-size: .82rem; color: var(--on-navy-soft); margin-top: 1rem; }
+
+  footer {
+    background: var(--navy-deep);
+    color: var(--on-navy-soft);
+    border-top: 1px solid #ffffff1a;
+    padding-block: 2.2rem;
+    font-size: .82rem;
+  }
+  .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+  .foot-inner .name { font-family: "Lora", serif; font-weight: 600; color: var(--on-navy); font-size: 1rem; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="co">合同会社</span><span class="name">Progress</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">サービス内容</a>
+      <a href="#jobs">就職サポート</a>
+      <a href="#features">特徴・料金</a>
+      <a href="#countries">対応国籍</a>
+      <a href="#company">会社概要</a>
+    </nav>
+    <a href="#contact" class="btn">お問い合わせ</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="kicker">国際・留学生向け</p>
+      <h1>留学生向け<br>賃貸仲介サービス</h1>
+      <p class="lede">部屋探しから入居・退去まで、ワンストップでサポート。契約の責任は弊社が担い、留学生が安心して暮らせる住環境を整えます。</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn">提携・お問い合わせ</a>
+        <a href="#services" class="btn ghost">サービスを見る</a>
+      </div>
+
+      <div class="company-card">
+        <div class="company-head">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+          </span>
+          <div>
+            <h2>合同会社<span class="en"> Progress</span></h2>
+            <p>賃貸仲介責任会社</p>
+          </div>
+        </div>
+        <dl class="company-facts">
+          <div><dt>代表者</dt><dd>藪川 鉄平</dd></div>
+          <div><dt>所在地</dt><dd>〒541-0046　大阪府大阪市中央区平野町2-5-8　平野町センチュリービル2階</dd></div>
+          <div><dt>免許番号</dt><dd>大阪府知事（1）第65516号</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Services</p>
+        <h2>サービス内容</h2>
+        <p>留学生の入居前から入居後まで、生活面を幅広くサポートします。</p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2-8-8-2Z"/></svg></div>
+          <h3>空港送迎サービス</h3>
+          <p>入国時、空港からマンションまで送迎対応します。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></div>
+          <h3>アルバイト紹介協力</h3>
+          <p>アルバイト先探しをサポート・紹介協力します。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-3a8 8 0 0 1 16 0v3"/><path d="M4 14a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 2Z"/><path d="M20 14a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2Z"/><path d="M18 16v1a4 4 0 0 1-4 4h-2"/></svg></div>
+          <h3>クレーム対応全般</h3>
+          <p>マンションに関するクレームに幅広く対応します。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+          <h3>生活全般手続きサポート</h3>
+          <p>携帯・ガス・水道・Wi-Fi・銀行口座開設などをサポートします。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg></div>
+          <h3>行政関係手続きサポート</h3>
+          <p>各種行政関係の手続きをサポートします。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>短期滞在サポート</h3>
+          <p>1・2ヶ月プログラムの短期滞在者にもマンションをご提供します。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="jobs" style="background:var(--surface-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Employment</p>
+        <h2>就職・求人のサポート</h2>
+        <p>ビザ区分に応じた就職先の紹介をサポートします。</p>
+      </div>
+      <div class="grid cols-2">
+        <article class="visa-card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg></div>
+          <h3>技術・人文知識・国際業務<br>（技人国）ビザ</h3>
+          <p class="label">対象業種</p>
+          <div class="chips">
+            <span class="chip">ホテル</span>
+            <span class="chip">IT</span>
+            <span class="chip">通訳</span>
+          </div>
+        </article>
+        <article class="visa-card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 0 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.2-2.2 2.6-2.6Z"/></svg></div>
+          <h3>特定技能ビザ</h3>
+          <p class="label">対象業種</p>
+          <div class="chips">
+            <span class="chip">宿泊</span>
+            <span class="chip">介護</span>
+            <span class="chip">食品工場</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why Progress</p>
+        <h2>サービスの特徴</h2>
+        <p>入居中のトラブルを未然に防ぎ、安心して暮らせる環境を提供します。</p>
+      </div>
+      <div class="grid cols-3">
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg></div>
+          <h3>一貫サポート</h3>
+          <p>部屋探しから入居・退去まで、すべての工程を一貫してサポートします。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/></svg></div>
+          <h3>契約責任は弊社</h3>
+          <p>賃貸契約の責任者は弊社が担当し、安心の管理体制を実現します。</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg></div>
+          <h3>事前指導＋対応</h3>
+          <p>クレームが起きないよう事前に指導し、発生時も丁寧に対応します。</p>
+        </article>
+      </div>
+
+      <div class="bar navy reveal">
+        <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 6 8 6-8"/><path d="M12 3v18"/></svg></span>
+        <span>
+          <span class="k">料金体系</span>
+          <span class="v">部屋の賃料　＋　サポート費</span>
+        </span>
+      </div>
+      <div class="bar teal reveal">
+        <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>
+        <span>
+          <span class="k">紹介手数料（提携校様向け）</span>
+          <span class="v">家賃の1ヶ月分（100%）をご提供</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="countries" style="background:var(--surface-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Languages &amp; Nationalities</p>
+        <h2>対応言語・国籍</h2>
+        <p>多国籍の留学生・人材の受け入れに対応しています。</p>
+      </div>
+      <div class="nat-panel reveal">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg></div>
+        <p class="label">対応国籍</p>
+        <div class="nat-chips">
+          <span class="chip">ベトナム</span>
+          <span class="chip">バングラデシュ</span>
+          <span class="chip">カンボジア</span>
+          <span class="chip">ネパール</span>
+          <span class="chip">インドネシア</span>
+          <span class="chip">ミャンマー</span>
+          <span class="chip">スリランカ</span>
+          <span class="chip">など</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" style="color:var(--on-navy-soft);">Contact</p>
+        <h2>お問い合わせ・会社概要</h2>
+        <p>提携校様・企業様からのご相談を承っております。</p>
+      </div>
+      <div class="info-grid" id="company">
+        <div class="info-card reveal">
+          <h3>ご相談・提携のお問い合わせ</h3>
+          <p class="lede">留学生の住まいの確保、就職先の紹介、提携校としての連携について承っております。下記の所在地まで、ご来社・ご郵送にてお問い合わせください。</p>
+          <dl>
+            <div><dt>所在地</dt><dd>〒541-0046<br>大阪府大阪市中央区平野町2-5-8<br>平野町センチュリービル2階</dd></div>
+            <div><dt>受付</dt><dd>提携校様・企業様からのご相談</dd></div>
+          </dl>
+        </div>
+        <div class="info-card reveal">
+          <h3>会社概要</h3>
+          <dl>
+            <div><dt>会社名</dt><dd>合同会社Progress</dd></div>
+            <div><dt>事業内容</dt><dd>留学生向け賃貸仲介・生活サポート</dd></div>
+            <div><dt>代表者</dt><dd>藪川 鉄平</dd></div>
+            <div><dt>所在地</dt><dd>〒541-0046<br>大阪府大阪市中央区平野町2-5-8<br>平野町センチュリービル2階</dd></div>
+            <div><dt>免許番号</dt><dd>大阪府知事（1）第65516号</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span class="name">合同会社Progress</span>
+    <span>&copy; 2026 合同会社Progress　留学生向け賃貸仲介サービス</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+</body>
+</html>
